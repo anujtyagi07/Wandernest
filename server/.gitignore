@@ -1,0 +1,7 @@
+node_modules/
+.env
+*.log
+uploads/receipts/*
+uploads/images/*
+!uploads/images/.gitkeep
+!uploads/receipts/.gitkeep

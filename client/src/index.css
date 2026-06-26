@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+/* ---- WanderNest Custom Theme ---- */
+
+@theme {
+  /* Colors */
+  --color-primary-50: #FFF3ED;
+  --color-primary-100: #FFE0CC;
+  --color-primary-200: #FFC199;
+  --color-primary-300: #FF9F66;
+  --color-primary-400: #FF8540;
+  --color-primary-500: #FF6B35;
+  --color-primary-600: #E55A2B;
+  --color-primary-700: #CC4A22;
+  --color-primary-800: #99371A;
+  --color-primary-900: #662511;
+
+  --color-secondary-50: #E8F5F0;
+  --color-secondary-100: #C5E8DB;
+  --color-secondary-200: #8FD1BB;
+  --color-secondary-300: #59BA9B;
+  --color-secondary-400: #33A682;
+  --color-secondary-500: #1A936F;
+  --color-secondary-600: #157659;
+  --color-secondary-700: #105943;
+  --color-secondary-800: #0B3B2D;
+  --color-secondary-900: #051E16;
+
+  --color-accent-50: #FEF8E8;
+  --color-accent-100: #FDEFC5;
+  --color-accent-200: #FBDF8F;
+  --color-accent-300: #F9CF59;
+  --color-accent-400: #F7BF33;
+  --color-accent-500: #F5A623;
+  --color-accent-600: #C4851C;
+  --color-accent-700: #936415;
+  --color-accent-800: #62420E;
+  --color-accent-900: #312107;
+
+  /* Semantic Colors */
+  --color-bg: #FAFAFA;
+  --color-surface: #ffffff;
+  --color-surface-dim: #FAF8F5;
+  --color-heading: #2B3A52;
+  --color-body-text: #333333;
+  --color-muted: #9ca3af;
+  --color-border: #e5e7eb;
+  --color-card: #ffffff;
+  --color-card-alt: #f9fafb;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-elevated: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ---- Base Styles ---- */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-body-text);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-heading);
+    line-height: 1.2;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+/* ---- Utility Classes ---- */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-accent-500));
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, var(--color-secondary-500), var(--color-secondary-300));
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-accent-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .container-custom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+
+  .grain {
+    position: relative;
+  }
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #FF6B35, #F5A623, #FF8540);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-cool {
+    background: linear-gradient(135deg, #1A936F, #33A682);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .mask-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  .line-decoration::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF6B35, #F5A623);
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+
+  .line-decoration-center::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #FF6B35, #F5A623);
+    border-radius: 2px;
+    margin: 12px auto 0;
+  }
+
+  @keyframes marquee {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-marquee-slow {
+    animation: marquee 35s linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee 30s linear infinite reverse;
+  }
+}

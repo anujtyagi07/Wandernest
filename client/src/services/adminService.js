@@ -1,0 +1,28 @@
+import api from './adminApi';
+
+export const adminService = {
+  getStats: () => api.get('/admin/stats'),
+  getAnalytics: (params = {}) => api.get('/admin/analytics', { params }),
+  getUsers: (params = {}) => api.get('/admin/users', { params }),
+  updateUser: (id, data) => api.put(`/admin/users/${id}`, data),
+  deleteUser: (id) => api.delete(`/admin/users/${id}`),
+  getAllBookings: (params = {}) => api.get('/admin/bookings', { params }),
+  updateBooking: (id, data) => api.put(`/admin/bookings/${id}`, data),
+  confirmBookingPayment: (id) => api.post(`/admin/bookings/${id}/confirm-payment`),
+  createPackage: (data) => api.post('/admin/packages', data),
+  updatePackage: (id, data) => api.put(`/admin/packages/${id}`, data),
+  deletePackage: (id) => api.delete(`/admin/packages/${id}`),
+  createHotel: (data) => api.post('/admin/hotels', data),
+  updateHotel: (id, data) => api.put(`/admin/hotels/${id}`, data),
+  deleteHotel: (id) => api.delete(`/admin/hotels/${id}`),
+  createDestination: (data) => api.post('/admin/destinations', data),
+  updateDestination: (id, data) => api.put(`/admin/destinations/${id}`, data),
+  deleteDestination: (id) => api.delete(`/admin/destinations/${id}`),
+  getPendingReviews: () => api.get('/admin/reviews/pending'),
+  moderateReview: (id, data) => api.put(`/admin/reviews/${id}`, data),
+  getInquiries: (params = {}) => api.get('/admin/inquiries', { params }),
+  updateInquiry: (id, data) => api.put(`/admin/inquiries/${id}`, data),
+  getSubscribers: () => api.get('/admin/subscribers'),
+  updatePriceConfig: (data) => api.put('/admin/price-config', data),
+  getSettings: () => api.get('/admin/settings'),
+};
