@@ -12,3 +12,6 @@ cmds = ["npm run build"]
 
 [staticDir]
 path = "dist"
+
+[start]
+cmd = "caddy run --config /app/Caddyfile"
