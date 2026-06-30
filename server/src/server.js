@@ -39,13 +39,19 @@ app.set('io', io);
 // ── Start Server ──
 const PORT = env.PORT;
 
+// Start server immediately so Railway health check passes
+server.listen(PORT, () => {
+  console.log(`\n  WanderNest Server running on port ${PORT}`);
+  console.log(`  Environment: ${env.NODE_ENV}`);
+  console.log(`  Client URL: ${env.CLIENT_URL}\n`);
+});
+
+// Connect to DB in background — server stays alive even if DB fails
 connectDB().then(() => {
   setupCronJobs();
-  server.listen(PORT, () => {
-    console.log(`\n  WanderNest Server running on port ${PORT}`);
-    console.log(`  Environment: ${env.NODE_ENV}`);
-    console.log(`  Client URL: ${env.CLIENT_URL}\n`);
-  });
+}).catch((err) => {
+  console.error('Failed to connect to database:', err.message);
+  console.error('Server is running but DB-dependent features will not work.');
 });
 
 // Graceful shutdown

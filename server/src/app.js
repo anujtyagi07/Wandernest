@@ -51,6 +51,17 @@ app.use('/api/', apiLimiter);
 // ── Static Files (uploads) ──
 app.use('/uploads', express.static(UPLOADS_DIR));
 
+// ── Root ──
+app.get('/', (_req, res) => {
+  res.json({
+    success: true,
+    message: 'WanderNest Backend is live 🚀',
+    version: '1.0.0',
+    environment: env.NODE_ENV,
+    timestamp: new Date(),
+  });
+});
+
 // ── Health Check ──
 app.get('/api/health', (_req, res) => {
   res.json({ success: true, message: 'WanderNest API is running', timestamp: new Date() });
