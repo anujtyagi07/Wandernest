@@ -8,8 +8,9 @@ import {
 import { io } from 'socket.io-client';
 import useAuthStore from '../store/authStore';
 import { chatService } from '../services/chatService';
+import { env } from '../config/env.js';
 
-const SOCKET_URL = import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://localhost:5000';
+const SOCKET_URL = env.SOCKET_URL;
 
 /* ================================================
    CHAT PAGE

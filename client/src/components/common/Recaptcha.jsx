@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { env } from '../../config/env.js';
 
-const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '';
+const RECAPTCHA_SITE_KEY = env.RECAPTCHA_SITE_KEY;
 
 /**
  * reCAPTCHA v3 hook for form protection

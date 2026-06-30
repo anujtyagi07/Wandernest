@@ -7,8 +7,9 @@ import {
 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import { bookingService } from '../services/bookingService';
+import { env } from '../config/env.js';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+const API_URL = env.API_URL;
 
 /* ================================================
    BOOKING DETAIL / RECEIPT PAGE

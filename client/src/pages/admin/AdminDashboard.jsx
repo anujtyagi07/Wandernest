@@ -13,8 +13,9 @@ import { adminService } from '../../services/adminService';
 import { packageService } from '../../services/packageService';
 import { hotelService } from '../../services/hotelService';
 import { destinationService } from '../../services/destinationService';
+import { env } from '../../config/env.js';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+const API_URL = env.API_URL;
 
 /* ── Nav Items ── */
 const NAV = [
