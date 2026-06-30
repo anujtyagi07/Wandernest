@@ -10,5 +10,5 @@ cmds = ["npm ci"]
 [phases.build]
 cmds = ["npm run build"]
 
-[start]
-cmd = "node_modules/.bin/serve -s dist --listen tcp://0.0.0.0:$PORT"
+[staticDir]
+path = "dist"
