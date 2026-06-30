@@ -3,6 +3,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { env } from './config/env.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { apiLimiter } from './middleware/rateLimiter.js';
@@ -19,6 +21,11 @@ import newsletterRoutes from './routes/newsletterRoutes.js';
 import priceCalcRoutes from './routes/priceCalcRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Absolute path to uploads directory — works regardless of Railway's working dir
+const UPLOADS_DIR = path.resolve(__dirname, '../..', 'uploads');
 
 const app = express();
 
@@ -41,8 +48,8 @@ if (env.NODE_ENV === 'development') {
 // ── Rate Limiting ──
 app.use('/api/', apiLimiter);
 
-// ── Static Files ──
-app.use('/uploads', express.static('uploads'));
+// ── Static Files (uploads) ──
+app.use('/uploads', express.static(UPLOADS_DIR));
 
 // ── Health Check ──
 app.get('/api/health', (_req, res) => {

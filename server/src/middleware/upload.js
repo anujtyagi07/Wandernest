@@ -1,9 +1,15 @@
 import multer from 'multer';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import AppError from '../utils/AppError.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Absolute path → works regardless of Railway's working directory
+const UPLOAD_DIR = path.resolve(__dirname, '../../..', 'uploads/images');
+
 const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => cb(null, 'uploads/images'),
+  destination: (_req, _file, cb) => cb(null, UPLOAD_DIR),
   filename: (_req, file, cb) => {
     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
     cb(null, `${uniqueSuffix}${path.extname(file.originalname)}`);
